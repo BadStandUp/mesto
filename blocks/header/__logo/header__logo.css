@@ -4,3 +4,18 @@
   object-fit: contain;
   margin-bottom: 41px;
 }
+
+@media screen and (max-width: 880px) {
+  .header__logo {
+    margin-left: 27px;
+  }
+}
+
+@media screen and (max-width: 428px) {
+  .header__logo {
+    width: 104px;
+    height: 24px;
+    margin: 0 auto 32px 27px;
+  }
+}
+
