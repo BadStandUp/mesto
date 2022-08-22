@@ -8,14 +8,13 @@
   background-size: contain;
   border: none;
   position: absolute;
-  margin-top: -40px;
-  margin-left: 436px;
+  top: -40px;
+  left: 436px;
   cursor: pointer;
   transition: .1s ease-in;
 }
 
 .popup__close-button:hover {
-  transition: .1s ease-in;
   opacity: .6;
 }
 
@@ -23,6 +22,6 @@
   .popup__close-button {
     width: 20px;
     height: 20px;
-    margin-left: 262px;
+    left: 262px;
   }
 }

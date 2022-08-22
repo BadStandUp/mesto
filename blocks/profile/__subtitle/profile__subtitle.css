@@ -4,6 +4,10 @@
   line-height: 22px;
   color: white;
   margin: 16px auto 0 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 342px;
 }
 
 @media screen and (max-width: 744px) {
@@ -16,5 +20,6 @@
   .profile__subtitle {
     font-size: 14px;
     line-height: 17px;
+    max-width: 216px;
   }
 }
