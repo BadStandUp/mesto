@@ -1,12 +1,12 @@
 const profileEditButton = document.querySelector('.profile__edit-button');
-const profileEditPopup = document.querySelector('.popup__profile-edit');
+const profileEditPopup = document.querySelector('.popup_profile-edit');
 const profileCloseButton = document.querySelector('.popup__close-button_profile-edit');
 
 const addCardButton = document.querySelector('.profile__add-button');
-const addCardPopup = document.querySelector('.popup__add-card');
+const addCardPopup = document.querySelector('.popup_add-card');
 const addCardCloseButton = document.querySelector('.popup__close-button_add-card');
 
-const zoomImagePopup = document.querySelector('.popup__zoom-image');
+const zoomImagePopup = document.querySelector('.popup_zoom-image');
 const zoomImageCloseButton = document.querySelector('.popup__close-button_zoom-image');
 let zoomImage = document.querySelector('.popup__image');
 let zoomImageCaption = document.querySelector('.popup__caption');
