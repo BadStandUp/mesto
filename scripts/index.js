@@ -69,22 +69,6 @@ function addCard(card) {
 
 initialCards.forEach(addCard);
 
-function toggleZoomImagePopup() {
-  if (zoomImagePopup.classList.contains('popup_opened') === false) {
-    openPopup(zoomImagePopup);
-  } else {
-    closePopup(zoomImagePopup);
-  }
-}
-
-function toggleAddCardPopup() {
-  if (popupAddCard.classList.contains('popup_opened') === false) {
-    openPopup(popupAddCard);
-  } else {
-    closePopup(popupAddCard);
-  }
-}
-
 function openPopup(popup) {
   popup.classList.add('popup_opened');
 }
@@ -93,22 +77,12 @@ function closePopup(popup) {
   popup.classList.remove('popup_opened');
 }
 
-function toggleProfilePopup() {
-  if (profileEditPopup.classList.contains('popup_opened') === false) {
-    nameInput.value = profileName.textContent;
-    jobInput.value =  profileAbout.textContent;
-    openPopup(profileEditPopup);
-  } else {
-    closePopup(profileEditPopup);
-  }
-}
-
 function addFormSubmitHandler(evt) {
   evt.preventDefault();
 
   addCard({name: placeInput.value, link: urlInput.value});
 
-  toggleAddCardPopup();
+  closePopup(popupAddCard);
   placeInput.value = '';
   urlInput.value = '';
 }
@@ -119,16 +93,19 @@ function editFormSubmitHandler(evt) {
   profileName.textContent = nameInput.value;
   profileAbout.textContent = jobInput.value;
 
-  toggleProfilePopup();
+  closePopup(profileEditPopup);
 }
 
-profileEditButton.addEventListener('click', toggleProfilePopup);
-profileCloseButton.addEventListener('click', toggleProfilePopup);
+profileEditButton.addEventListener('click', function () {
+  nameInput.value = profileName.textContent;
+  jobInput.value =  profileAbout.textContent;
+  openPopup(profileEditPopup)});
+profileCloseButton.addEventListener('click', function () {closePopup(profileEditPopup)});
 
-buttonForOpenAddCardPopup.addEventListener('click', toggleAddCardPopup);
-buttonForCloseAddCardPopup.addEventListener('click', toggleAddCardPopup);
+buttonForOpenAddCardPopup.addEventListener('click', function () {openPopup(popupAddCard)});
+buttonForCloseAddCardPopup.addEventListener('click', function () {closePopup(popupAddCard)});
 
-zoomImageCloseButton.addEventListener('click', toggleZoomImagePopup);
+zoomImageCloseButton.addEventListener('click', function () {closePopup(zoomImagePopup)});
 
 addCardFormElement.addEventListener('submit', addFormSubmitHandler);
 editFormElement.addEventListener('submit', editFormSubmitHandler);
