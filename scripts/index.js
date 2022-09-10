@@ -37,33 +37,26 @@ function handleLike(evt) {
 
 function createCard(card) {
   const cardElement = cardTemplate.content.cloneNode(true);
-
   const cardName = cardElement.querySelector('.element__title');
   const cardImage =  cardElement.querySelector('.element__image');
-
   const cardDeleteButton = cardElement.querySelector('.element__delete-button');
   const cardLikeButton = cardElement.querySelector('.element__like-button');
-
   cardName.textContent = card.name;
   cardImage.src = card.link;
   cardImage.alt = card.name;
-
   cardDeleteButton.addEventListener('click', handleDelete);
   cardLikeButton.addEventListener('click', handleLike);
   cardImage.addEventListener('click', function () {
     zoomImageCaption.textContent = card.name;
     zoomImage.src = card.link;
     zoomImage.alt = card.name;
-
     openPopup(zoomImagePopup);
   });
-
   return cardElement;
 }
 
 function addCard(card) {
   createCard(card);
-
   cardsList.prepend(createCard(card));
 }
 
@@ -71,17 +64,34 @@ initialCards.forEach(addCard);
 
 function openPopup(popup) {
   popup.classList.add('popup_opened');
+  popup.addEventListener('click', closePopupByClickHandler);
+  document.addEventListener('keydown', closePopupByEscHandler);
 }
 
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
+  popup.removeEventListener('click', closePopupByClickHandler);
+  document.removeEventListener('keydown', closePopupByEscHandler);
+}
+
+const closePopupByClickHandler = (evt) => {
+  if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__close-button')) {
+    closePopup(evt.currentTarget);
+  }
+}
+
+const closePopupByEscHandler = (evt) => {
+  if (evt.key === 'Escape') {
+    const openedPopup = document.querySelector('.popup_opened');
+    closePopup(openedPopup);
+  } else {
+    document.removeEventListener('keydown', closePopupByEscHandler);
+  }
 }
 
 function addFormSubmitHandler(evt) {
   evt.preventDefault();
-
   addCard({name: placeInput.value, link: urlInput.value});
-
   closePopup(popupAddCard);
   placeInput.value = '';
   urlInput.value = '';
@@ -89,10 +99,8 @@ function addFormSubmitHandler(evt) {
 
 function editFormSubmitHandler(evt) {
   evt.preventDefault();
-
   profileName.textContent = nameInput.value;
   profileAbout.textContent = jobInput.value;
-
   closePopup(profileEditPopup);
 }
 
