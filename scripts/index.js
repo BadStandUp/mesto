@@ -72,6 +72,7 @@ function closePopup(popup) {
   popup.classList.remove('popup_opened');
   popup.removeEventListener('click', closePopupByClickHandler);
   document.removeEventListener('keydown', closePopupByEscHandler);
+
 }
 
 const closePopupByClickHandler = (evt) => {
@@ -84,17 +85,18 @@ const closePopupByEscHandler = (evt) => {
   if (evt.key === 'Escape') {
     const openedPopup = document.querySelector('.popup_opened');
     closePopup(openedPopup);
-  } else {
-    document.removeEventListener('keydown', closePopupByEscHandler);
   }
 }
 
 function addFormSubmitHandler(evt) {
   evt.preventDefault();
   addCard({name: placeInput.value, link: urlInput.value});
+  addCardFormElement.reset();
   closePopup(popupAddCard);
   placeInput.value = '';
   urlInput.value = '';
+  addCardFormElement.reset();
+  enableValidation(validationConfig);
 }
 
 function editFormSubmitHandler(evt) {
