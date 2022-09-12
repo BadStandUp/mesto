@@ -16,6 +16,7 @@ const urlInput = document.querySelector('.popup__input_place_url');
 
 const addCardFormElement = document.querySelector('.popup__form_add-card');
 const editFormElement = document.querySelector('.popup__form_profile-edit');
+const submitButton = document.querySelector('.popup__save-button');
 
 const nameInput = document.querySelector('.popup__input_data_name');
 const jobInput = document.querySelector('.popup__input_data_about');
@@ -93,10 +94,9 @@ function addFormSubmitHandler(evt) {
   addCard({name: placeInput.value, link: urlInput.value});
   addCardFormElement.reset();
   closePopup(popupAddCard);
-  placeInput.value = '';
-  urlInput.value = '';
   addCardFormElement.reset();
-  enableValidation(validationConfig);
+  submitButton.classList.add('popup__save-button_disabled');
+  submitButton.setAttribute('disabled', '');
 }
 
 function editFormSubmitHandler(evt) {
