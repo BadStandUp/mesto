@@ -47,12 +47,13 @@ function createCard(card) {
   cardImage.alt = card.name;
   cardDeleteButton.addEventListener('click', handleDelete);
   cardLikeButton.addEventListener('click', handleLike);
-  cardImage.addEventListener('click', function () {
+  cardImage.addEventListener('click', () => {
     zoomImageCaption.textContent = card.name;
     zoomImage.src = card.link;
     zoomImage.alt = card.name;
     openPopup(zoomImagePopup);
   });
+
   return cardElement;
 }
 
@@ -106,16 +107,16 @@ function editFormSubmitHandler(evt) {
   closePopup(profileEditPopup);
 }
 
-profileEditButton.addEventListener('click', function () {
+profileEditButton.addEventListener('click', () => {
   nameInput.value = profileName.textContent;
   jobInput.value =  profileAbout.textContent;
   openPopup(profileEditPopup)});
-profileCloseButton.addEventListener('click', function () {closePopup(profileEditPopup)});
+profileCloseButton.addEventListener('click', () => {closePopup(profileEditPopup)});
 
-buttonForOpenAddCardPopup.addEventListener('click', function () {openPopup(popupAddCard)});
-buttonForCloseAddCardPopup.addEventListener('click', function () {closePopup(popupAddCard)});
+buttonForOpenAddCardPopup.addEventListener('click', () => {openPopup(popupAddCard)});
+buttonForCloseAddCardPopup.addEventListener('click', () => {closePopup(popupAddCard)});
 
-zoomImageCloseButton.addEventListener('click', function () {closePopup(zoomImagePopup)});
+zoomImageCloseButton.addEventListener('click', () => {closePopup(zoomImagePopup)});
 
 addCardFormElement.addEventListener('submit', addFormSubmitHandler);
 editFormElement.addEventListener('submit', editFormSubmitHandler);
