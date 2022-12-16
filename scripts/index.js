@@ -33,8 +33,8 @@ const addCardValidator = new FormValidator(validationConfig, addCardFormElement)
 editFormValidator.enableValidation();
 addCardValidator.enableValidation();
 
-function addCard(item) {
-  const card = new Card(item);
+function addCard(item, ) {
+  const card = new Card(item, );
   const cardItem = card.generateCard();
 
   cardsList.prepend(cardItem);
@@ -48,8 +48,7 @@ function addFormSubmitHandler(evt) {
   addCardFormElement.reset();
   closePopup(popupAddCard);
   addCardFormElement.reset();
-  submitButton.classList.add('popup__save-button_disabled');
-  submitButton.setAttribute('disabled', '');
+  addCardValidator.toggleButtonState();
 }
 
 function editFormSubmitHandler(evt) {

@@ -1,10 +1,8 @@
 import {cardTemplate, zoomImagePopup, zoomImage, zoomImageCaption, openPopup} from './utils.js';
 
 export default class Card {
-  _cardElement;
-  _itemElement;
 
-  constructor(card) {
+  constructor(card, ) {
     this._name = card.name;
     this._url = card.link;
   }
