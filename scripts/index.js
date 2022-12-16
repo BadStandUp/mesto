@@ -1,4 +1,4 @@
-import {initialCards} from "./initial-cards.js";
+import {initialCards, validationConfig} from "./constants.js";
 import {cardsList, openPopup, closePopup} from "./utils.js";
 import Card from "./Card.js";
 import FormValidator from "./FormValidator.js";
@@ -26,15 +26,6 @@ const jobInput = document.querySelector('.popup__input_data_about');
 
 const profileName = document.querySelector('.profile__title');
 const profileAbout = document.querySelector('.profile__subtitle');
-
-const validationConfig = {
-  formSelector: '.popup__form',
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__save-button',
-  inactiveButtonClass: 'popup__save-button_disabled',
-  inputErrorClass: 'popup__input_type_error',
-  errorClass: 'popup__input-error_active'
-}
 
 const editFormValidator = new FormValidator(validationConfig, editFormElement);
 const addCardValidator = new FormValidator(validationConfig, addCardFormElement);
