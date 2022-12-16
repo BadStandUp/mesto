@@ -1,19 +1,21 @@
-const cardsList = document.querySelector('.elements');
-const cardTemplate = document.querySelector('#card-template');
+import {cardTemplate, zoomImagePopup, zoomImage, zoomImageCaption, openPopup} from './utils.js';
 
-class Card {
+export default class Card {
+  _cardElement;
+  _itemElement;
+
   constructor(card) {
     this._name = card.name;
     this._url = card.link;
   }
 
   _getTemplate() {
-    const cardElement = cardTemplate
+    this._cardElement = cardTemplate
       .content
       .querySelector('.element')
       .cloneNode(true);
 
-    return cardElement;
+    return this._cardElement;
   }
 
   generateCard() {
@@ -28,30 +30,24 @@ class Card {
   }
 
   _setEventListeners() {
-    this._element.addEventListener('click', () => {
+    this._element.querySelector('.element__delete-button').addEventListener('click', this._handleDelete);
 
-    })
+    this._element.querySelector('.element__like-button').addEventListener('click', this._handleLike);
 
-    const cardDeleteButton = cardElement.querySelector('.element__delete-button');
-    const cardLikeButton = cardElement.querySelector('.element__like-button');
-
+    this._element.querySelector('.element__image').addEventListener('click', () => {
+      zoomImageCaption.textContent = this._name;
+      zoomImage.src = this._url;
+      zoomImage.alt = this._name;
+      openPopup(zoomImagePopup);
+    });
   }
 
-  _handleDelete() {
-
+  _handleDelete(evt) {
+    this._itemElement = evt.target.closest('.element');
+    this._itemElement.remove();
   }
 
-  _handleLike() {
-
+  _handleLike(evt) {
+    evt.target.classList.toggle('element__like-button_active');
   }
-
 }
-
-initialCards.forEach((item) => {
-  const card = new Card(item);
-  const cardItem = card.generateCard();
-
-  cardsList.prepend(cardItem);
-})
-
-
