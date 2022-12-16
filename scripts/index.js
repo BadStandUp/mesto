@@ -38,9 +38,8 @@ const validationConfig = {
   errorClass: 'popup__input-error_active'
 }
 
-
-const editFormValidator = new FormValidator(validationConfig);
-const addCardValidator = new FormValidator(validationConfig);
+const editFormValidator = new FormValidator(validationConfig, editFormElement);
+const addCardValidator = new FormValidator(validationConfig, addCardFormElement);
 
 editFormValidator.enableValidation();
 addCardValidator.enableValidation();
