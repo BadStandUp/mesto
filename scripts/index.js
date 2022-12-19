@@ -19,7 +19,6 @@ const urlInput = document.querySelector('.popup__input_place_url');
 
 const addCardFormElement = document.querySelector('.popup__form_add-card');
 const editFormElement = document.querySelector('.popup__form_profile-edit');
-const submitButton = document.querySelector('.popup__save-button');
 
 const nameInput = document.querySelector('.popup__input_data_name');
 const jobInput = document.querySelector('.popup__input_data_about');
@@ -33,8 +32,8 @@ const addCardValidator = new FormValidator(validationConfig, addCardFormElement)
 editFormValidator.enableValidation();
 addCardValidator.enableValidation();
 
-function addCard(item, ) {
-  const card = new Card(item, );
+function addCard(item) {
+  const card = new Card(item, '#card-template', );
   const cardItem = card.generateCard();
 
   cardsList.prepend(cardItem);

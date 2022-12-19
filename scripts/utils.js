@@ -1,5 +1,4 @@
 export const cardsList = document.querySelector('.elements');
-export const cardTemplate = document.querySelector('#card-template');
 
 export const zoomImagePopup = document.querySelector('.popup_zoom-image');
 export const zoomImage = document.querySelector('.popup__image');
