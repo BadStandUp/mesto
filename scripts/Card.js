@@ -2,9 +2,9 @@ import { zoomImagePopup, zoomImage, zoomImageCaption, openPopup} from './utils.j
 
 export default class Card {
 
-  constructor(card, templateSelector) {
-    this._name = card.name;
-    this._url = card.link;
+  constructor({name, link}, templateSelector) {
+    this._name = name;
+    this._url = link;
     this._templateSelector = templateSelector;
   }
 
