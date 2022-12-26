@@ -1,6 +1,7 @@
 import {initialCards, validationConfig} from "./constants.js";
 import {cardsList, openPopup, closePopup} from "./utils.js";
 import Card from "./Card.js";
+import Section from "./Section.js";
 import FormValidator from "./FormValidator.js";
 
 const profileEditButton = document.querySelector('.profile__edit-button');
@@ -32,14 +33,20 @@ const addCardValidator = new FormValidator(validationConfig, addCardFormElement)
 editFormValidator.enableValidation();
 addCardValidator.enableValidation();
 
-function addCard(item) {
-  const card = new Card(item, '#card-template', );
+const section = new Section({
+    data: initialCards,
+    renderer: cardRenderer
+  },
+  '#card-template'
+);
+section.renderItems();
+
+function cardRenderer(item, selector) {
+  const card = new Card(item, selector);
   const cardItem = card.generateCard();
 
-  cardsList.prepend(cardItem);
+  section.addItem(cardsList, cardItem)
 }
-
-initialCards.forEach(addCard);
 
 function addFormSubmitHandler(evt) {
   evt.preventDefault();
@@ -59,14 +66,23 @@ function editFormSubmitHandler(evt) {
 
 profileEditButton.addEventListener('click', () => {
   nameInput.value = profileName.textContent;
-  jobInput.value =  profileAbout.textContent;
-  openPopup(profileEditPopup)});
-profileCloseButton.addEventListener('click', () => {closePopup(profileEditPopup)});
+  jobInput.value = profileAbout.textContent;
+  openPopup(profileEditPopup)
+});
+profileCloseButton.addEventListener('click', () => {
+  closePopup(profileEditPopup)
+});
 
-buttonForOpenAddCardPopup.addEventListener('click', () => {openPopup(popupAddCard)});
-buttonForCloseAddCardPopup.addEventListener('click', () => {closePopup(popupAddCard)});
+buttonForOpenAddCardPopup.addEventListener('click', () => {
+  openPopup(popupAddCard)
+});
+buttonForCloseAddCardPopup.addEventListener('click', () => {
+  closePopup(popupAddCard)
+});
 
-zoomImageCloseButton.addEventListener('click', () => {closePopup(zoomImagePopup)});
+zoomImageCloseButton.addEventListener('click', () => {
+  closePopup(zoomImagePopup)
+});
 
 addCardFormElement.addEventListener('submit', addFormSubmitHandler);
 editFormElement.addEventListener('submit', editFormSubmitHandler);
