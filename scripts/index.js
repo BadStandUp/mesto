@@ -2,11 +2,12 @@ import {initialCards, validationConfig} from "./constants.js";
 import {cardsList, openPopup, closePopup} from "./utils.js";
 import Card from "./Card.js";
 import Section from "./Section.js";
+import Popup from "./Popup.js";
 import FormValidator from "./FormValidator.js";
 
 const profileEditButton = document.querySelector('.profile__edit-button');
-const profileEditPopup = document.querySelector('.popup_profile-edit');
 const profileCloseButton = document.querySelector('.popup__close-button_profile-edit');
+const profileEditPopup = new Popup('.popup_profile-edit');
 
 const buttonForOpenAddCardPopup = document.querySelector('.profile__add-button');
 const popupAddCard = document.querySelector('.popup_add-card');
@@ -19,7 +20,7 @@ const placeInput = document.querySelector('.popup__input_place_name');
 const urlInput = document.querySelector('.popup__input_place_url');
 
 const addCardFormElement = document.querySelector('.popup__form_add-card');
-const editFormElement = document.querySelector('.popup__form_profile-edit');
+const editProfileFormElement = document.querySelector('.popup__form_profile-edit');
 
 const nameInput = document.querySelector('.popup__input_data_name');
 const jobInput = document.querySelector('.popup__input_data_about');
@@ -27,7 +28,7 @@ const jobInput = document.querySelector('.popup__input_data_about');
 const profileName = document.querySelector('.profile__title');
 const profileAbout = document.querySelector('.profile__subtitle');
 
-const editFormValidator = new FormValidator(validationConfig, editFormElement);
+const editFormValidator = new FormValidator(validationConfig, editProfileFormElement);
 const addCardValidator = new FormValidator(validationConfig, addCardFormElement);
 
 editFormValidator.enableValidation();
@@ -61,16 +62,17 @@ function editFormSubmitHandler(evt) {
   evt.preventDefault();
   profileName.textContent = nameInput.value;
   profileAbout.textContent = jobInput.value;
-  closePopup(profileEditPopup);
+  profileEditPopup.close();
 }
 
 profileEditButton.addEventListener('click', () => {
   nameInput.value = profileName.textContent;
   jobInput.value = profileAbout.textContent;
-  openPopup(profileEditPopup)
+  profileEditPopup.open();
 });
+
 profileCloseButton.addEventListener('click', () => {
-  closePopup(profileEditPopup)
+  profileEditPopup.close()
 });
 
 buttonForOpenAddCardPopup.addEventListener('click', () => {
@@ -85,4 +87,4 @@ zoomImageCloseButton.addEventListener('click', () => {
 });
 
 addCardFormElement.addEventListener('submit', addFormSubmitHandler);
-editFormElement.addEventListener('submit', editFormSubmitHandler);
+editProfileFormElement.addEventListener('submit', editFormSubmitHandler);
