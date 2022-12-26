@@ -1,17 +1,20 @@
+import Popup from "./Popup";
+
 class PopupWithForm extends Popup {
-  constructor() {
+  constructor(selector, callback) {
     super();
-  }
-
-  _getInputValues() {
-
+    this._submitCallback = callback;
   }
 
   setEventListeners() {
-
+    super.setEventListeners()
   }
 
   close() {
+    super.close()
+  }
+
+  _getInputValues() {
 
   }
 
