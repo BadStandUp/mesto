@@ -1,11 +1,10 @@
-import { zoomImagePopup, zoomImage, zoomImageCaption, openPopup} from './utils.js';
-
 export default class Card {
 
   constructor({name, link}, templateSelector, handleCardClick) {
     this._name = name;
     this._url = link;
     this._templateSelector = templateSelector;
+    this._element = this._getTemplate();
     this._handleCardClick = handleCardClick;
   }
 
@@ -20,13 +19,12 @@ export default class Card {
   }
 
   generateCard() {
-    this._element = this._getTemplate();
-    this._cardImage = this._element.querySelector('.element__image');
-    this._cardTitle = this._element.querySelector('.element__title');
+    this._image = this._element.querySelector('.element__image');
+    this._image.alt = this._name;
+    this._image.src = this._url;
 
-    this._cardTitle.textContent = this._name;
-    this._cardImage.alt = this._name;
-    this._cardImage.src = this._url;
+    const title = this._element.querySelector('.element__title');
+    title.textContent = this._name;
 
     this._setEventListeners();
 
@@ -39,17 +37,10 @@ export default class Card {
 
     this._deleteButton.addEventListener('click', () => this._element.remove());
     this._likeButton.addEventListener('click', this._handleLike);
-    this._cardImage.addEventListener('click', () => {
-      zoomImageCaption.textContent = this._name;
-      zoomImage.src = this._url;
-      zoomImage.alt = this._name;
-      openPopup(zoomImagePopup);
-    });
+    this._image.addEventListener('click', () => this._handleCardClick());
   }
 
   _handleLike(evt) {
     evt.target.classList.toggle('element__like-button_active');
   }
-
-
 }

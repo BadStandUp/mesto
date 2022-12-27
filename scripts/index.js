@@ -1,10 +1,11 @@
 import {initialCards, validationConfig} from "./constants.js";
-import {cardsList, openPopup, closePopup} from "./utils.js";
+import {cardsList, closePopup} from "./utils.js";
 import Card from "./Card.js";
 import Section from "./Section.js";
 import Popup from "./Popup.js";
 import UserInfo from "./UserInfo.js";
 import FormValidator from "./FormValidator.js";
+import PopupWithImage from "./PopupWithImage.js";
 
 const profileEditButton = document.querySelector('.profile__edit-button');
 const profileCloseButton = document.querySelector('.popup__close-button_profile-edit');
@@ -44,7 +45,12 @@ const section = new Section({
 section.renderItems();
 
 function cardRenderer(item, selector) {
-  const card = new Card(item, selector, );
+  const card = new Card(item, selector,
+    () => {
+      const popup = new PopupWithImage('.popup_zoom-image', item);
+      popup.open();
+    }
+  );
   const cardItem = card.generateCard();
 
   section.addItem(cardsList, cardItem)
@@ -75,17 +81,3 @@ profileEditButton.addEventListener('click', () => {
 profileCloseButton.addEventListener('click', () => {
   profileEditPopup.close()
 });
-
-buttonForOpenAddCardPopup.addEventListener('click', () => {
-  openPopup(popupAddCard)
-});
-buttonForCloseAddCardPopup.addEventListener('click', () => {
-  closePopup(popupAddCard)
-});
-
-zoomImageCloseButton.addEventListener('click', () => {
-  closePopup(zoomImagePopup)
-});
-
-addCardFormElement.addEventListener('submit', addFormSubmitHandler);
-editProfileFormElement.addEventListener('submit', editFormSubmitHandler);
