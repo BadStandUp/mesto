@@ -11,7 +11,6 @@ const profileEditButton = document.querySelector('.profile__edit-button');
 const profileCloseButton = document.querySelector('.popup__close-button_profile-edit');
 const info = new UserInfo('.profile__title', '.profile__subtitle');
 
-
 const profileEditPopup = new PopupWithForm(
   '.popup_profile-edit',
   '.popup__form_profile-edit',
@@ -24,15 +23,20 @@ const popupAddCard = new PopupWithForm(
   '.popup_add-card',
   '.popup__form_add-card',
   data => {
+    const item = {name: data.name, link: data.about};
 
+    const card = new Card(
+      item,
+      '#card-template',
+      () => cardClick(item)
+    );
+
+    section.addItem(document.querySelector('.elements'), card.generateCard());
   }
 );
 
-
 const buttonForOpenAddCardPopup = document.querySelector('.profile__add-button');
-
-const placeInput = document.querySelector('.popup__input_place_name');
-const urlInput = document.querySelector('.popup__input_place_url');
+const buttonForCloseAddCardPopup = document.querySelector('.popup__close-button_add-card');
 
 const addCardFormElement = document.querySelector('.popup__form_add-card');
 const editProfileFormElement = document.querySelector('.popup__form_profile-edit');
@@ -56,23 +60,16 @@ section.renderItems();
 
 function cardRenderer(item, selector) {
   const card = new Card(item, selector,
-    () => {
-      const popup = new PopupWithImage('.popup_zoom-image', item);
-      popup.open();
-    }
+    () => cardClick(item)
   );
   const cardItem = card.generateCard();
 
-  section.addItem(cardsList, cardItem)
+  section.addItem(document.querySelector('.elements'), cardItem)
 }
 
-function addFormSubmitHandler(evt) {
-  evt.preventDefault();
-  addCard({name: placeInput.value, link: urlInput.value});
-  addCardFormElement.reset();
-  closePopup(popupAddCard);
-  addCardFormElement.reset();
-  addCardValidator.toggleButtonState();
+function cardClick(item) {
+  const popup = new PopupWithImage('.popup_zoom-image', item);
+  popup.open();
 }
 
 profileEditButton.addEventListener('click', () => {
@@ -91,4 +88,8 @@ profileCloseButton.addEventListener('click', () => {
   profileEditPopup.close()
 });
 
-addCardFormElement.addEventListener('submit', addFormSubmitHandler);
+buttonForCloseAddCardPopup.addEventListener('click', () => {
+  popupAddCard.close();
+});
+
+// addCardFormElement.addEventListener('submit', addFormSubmitHandler);
