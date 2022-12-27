@@ -3,6 +3,7 @@ import {cardsList, openPopup, closePopup} from "./utils.js";
 import Card from "./Card.js";
 import Section from "./Section.js";
 import Popup from "./Popup.js";
+import UserInfo from "./UserInfo.js";
 import FormValidator from "./FormValidator.js";
 
 const profileEditButton = document.querySelector('.profile__edit-button');
@@ -43,7 +44,7 @@ const section = new Section({
 section.renderItems();
 
 function cardRenderer(item, selector) {
-  const card = new Card(item, selector);
+  const card = new Card(item, selector, );
   const cardItem = card.generateCard();
 
   section.addItem(cardsList, cardItem)

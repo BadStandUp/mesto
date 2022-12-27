@@ -6,7 +6,7 @@ export default class Section {
   }
 
   renderItems() {
-    this._initialCards.forEach(c => this._renderer(c, this._selector));
+    this._initialCards.forEach(card => this._renderer(card, this._selector));
   }
 
   addItem(document, card) {
