@@ -33,3 +33,15 @@ export const initialCards = [
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
   }
 ];
+
+export const profileEditButton = document.querySelector('.profile__edit-button');
+export const profileCloseButton = document.querySelector('.popup__close-button_profile-edit');
+
+export const buttonForOpenAddCardPopup = document.querySelector('.profile__add-button');
+export const buttonForCloseAddCardPopup = document.querySelector('.popup__close-button_add-card');
+
+export const addCardFormElement = document.querySelector('.popup__form_add-card');
+export const editProfileFormElement = document.querySelector('.popup__form_profile-edit');
+
+export const nameInput = document.querySelector('.popup__input_data_name');
+export const jobInput = document.querySelector('.popup__input_data_about');
