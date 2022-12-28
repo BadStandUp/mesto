@@ -1,5 +1,4 @@
 import {initialCards, validationConfig} from "./constants.js";
-import {cardsList, closePopup} from "./utils.js";
 import Card from "./Card.js";
 import Section from "./Section.js";
 import UserInfo from "./UserInfo.js";
@@ -91,5 +90,3 @@ profileCloseButton.addEventListener('click', () => {
 buttonForCloseAddCardPopup.addEventListener('click', () => {
   popupAddCard.close();
 });
-
-// addCardFormElement.addEventListener('submit', addFormSubmitHandler);
