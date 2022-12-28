@@ -1,10 +1,11 @@
-import {initialCards, validationConfig} from "./constants.js";
-import Card from "./Card.js";
-import Section from "./Section.js";
-import UserInfo from "./UserInfo.js";
-import FormValidator from "./FormValidator.js";
-import PopupWithImage from "./PopupWithImage.js";
-import PopupWithForm from "./PopupWithForm.js";
+import {initialCards, validationConfig} from "./scripts/constants.js";
+import Card from "./scripts/Card.js";
+import Section from "./scripts/Section.js";
+import UserInfo from "./scripts/UserInfo.js";
+import FormValidator from "./scripts/FormValidator.js";
+import PopupWithImage from "./scripts/PopupWithImage.js";
+import PopupWithForm from "./scripts/PopupWithForm.js";
+import './pages/index.css'
 
 const profileEditButton = document.querySelector('.profile__edit-button');
 const profileCloseButton = document.querySelector('.popup__close-button_profile-edit');
