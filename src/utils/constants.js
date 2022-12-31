@@ -34,6 +34,7 @@ export const initialCards = [
   }
 ];
 
+export const elements = document.querySelector('.elements');
 export const profileEditButton = document.querySelector('.profile__edit-button');
 export const profileCloseButton = document.querySelector('.popup__close-button_profile-edit');
 
@@ -44,4 +45,4 @@ export const addCardFormElement = document.querySelector('.popup__form_add-card'
 export const editProfileFormElement = document.querySelector('.popup__form_profile-edit');
 
 export const nameInput = document.querySelector('.popup__input_data_name');
-export const jobInput = document.querySelector('.popup__input_data_about');
+export const aboutInput = document.querySelector('.popup__input_data_about');

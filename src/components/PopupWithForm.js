@@ -14,7 +14,6 @@ export default class PopupWithForm extends Popup {
 
   close() {
     super.close();
-    this._form.removeEventListener('submit', evt => this._processForm(evt))
     this._form.reset();
   }
 
@@ -25,11 +24,11 @@ export default class PopupWithForm extends Popup {
   }
 
   _getInputValues() {
-    const nameIndex = 0;
-    const aboutIndex = 1;
+    const formInputs = this._form.elements;
 
-    const extractor = idx => this._form[idx].value;
+    const nameInput = formInputs['name'].value;
+    const aboutInput = formInputs['about'].value;
 
-    return {name: extractor(nameIndex), about: extractor(aboutIndex)};
+    return {name: nameInput, about: aboutInput};
   }
 }

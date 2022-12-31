@@ -9,7 +9,7 @@ export default class Section {
     this._initialCards.forEach(card => this._renderer(card, this._selector));
   }
 
-  addItem(document, card) {
-    document.prepend(card);
+  addItem(selector, card) {
+    selector.prepend(card);
   }
 }
