@@ -33,7 +33,7 @@ profileEditPopup.setEventListeners();
 const popupAddCard = new PopupWithForm({
   popupSelector: '.popup_add-card',
   callback: data => {
-    const item = {name: data.nameInput, link: data.urlInput};
+    const item = {name: data.placeInput, link: data.urlInput};
 
     const card = new Card(item, '#card-template', () => handleCardClick(item));
 
