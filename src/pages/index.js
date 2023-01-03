@@ -25,7 +25,7 @@ const userInfo = new UserInfo({
 const profileEditPopup = new PopupWithForm({
   popupSelector: '.popup_profile-edit',
   callback: data => {
-    userInfo.setUserInfo({name: data.name, about: data.about});
+    userInfo.setUserInfo({name: data.nameInput, about: data.aboutInput});
   }
 });
 profileEditPopup.setEventListeners();
