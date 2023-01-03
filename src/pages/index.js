@@ -17,33 +17,29 @@ import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import './index.css';
 
-const userInfo = new UserInfo('.profile__title', '.profile__subtitle');
+const userInfo = new UserInfo({
+  nameSelector: '.profile__title',
+  aboutSelector: '.profile__subtitle'
+});
 
-const profileEditPopup = new PopupWithForm(
-  '.popup_profile-edit',
-  '.popup__form_profile-edit',
-  data => {
+const profileEditPopup = new PopupWithForm({
+  popupSelector: '.popup_profile-edit',
+  callback: data => {
     userInfo.setUserInfo({name: data.name, about: data.about});
-    profileEditPopup.close();
   }
-);
+});
 profileEditPopup.setEventListeners();
 
-const popupAddCard = new PopupWithForm(
-  '.popup_add-card',
-  '.popup__form_add-card',
-  data => {
+const popupAddCard = new PopupWithForm({
+  popupSelector: '.popup_add-card',
+  callback: data => {
     const item = {name: data.name, link: data.about};
 
-    const card = new Card(
-      item,
-      '#card-template',
-      () => handleCardClick(item)
-    );
+    const card = new Card(item, '#card-template', () => handleCardClick(item));
 
     cardList.addItem(elements, card.generateCard());
   }
-);
+});
 popupAddCard.setEventListeners();
 
 const imagePopup = new PopupWithImage('.popup_zoom-image');
@@ -58,29 +54,30 @@ addCardValidator.enableValidation();
 const cardList = new Section(
   {
     data: initialCards,
-    renderer: cardRenderer
+    renderer: (item) => {
+      cardList.addItem(elements, createCard(item))
+    }
   },
   '#card-template');
 cardList.renderItems();
 
-function cardRenderer(item, selector) {
-  const card = new Card(
-    item,
-    selector,
-    () => handleCardClick(item)
-  );
-  const cardItem = card.generateCard();
+function createCard(item) {
+  const newCard = new Card(item, '#card-template', () => handleCardClick(item));
 
-  cardList.addItem(elements, cardItem);
+  return newCard.generateCard();
 }
+
 
 function handleCardClick(item) {
   imagePopup.open(item);
 }
 
 profileEditButton.addEventListener('click', () => {
-  nameInput.value = userInfo.getUserInfo().name;
-  aboutInput.value = userInfo.getUserInfo().about;
+
+  const profileInfo = userInfo.getUserInfo();
+
+  nameInput.value = profileInfo.name;
+  aboutInput.value = profileInfo.about;
 
   editFormValidator.toggleButtonState();
 
