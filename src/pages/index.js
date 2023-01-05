@@ -35,9 +35,7 @@ const popupAddCard = new PopupWithForm({
   callback: data => {
     const item = {name: data.placeInput, link: data.urlInput};
 
-    const card = new Card(item, '#card-template', () => handleCardClick(item));
-
-    cardList.addItem(elements, card.generateCard());
+    cardList.addItem(elements, createCard(item));
   }
 });
 popupAddCard.setEventListeners();
@@ -55,7 +53,7 @@ const cardList = new Section(
   {
     data: initialCards,
     renderer: (item) => {
-      cardList.addItem(elements, createCard(item))
+      cardList.addItem(elements, createCard(item));
     }
   },
   '#card-template');
