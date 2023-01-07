@@ -16,10 +16,11 @@ import UserInfo from "../components/UserInfo.js";
 import FormValidator from "../components/FormValidator.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
-import Api from "../components/Api.js";
+import PopupWithConfirmation from "../components/PopupWithConfirmation.js";
+import API from "../components/API.js";
 import './index.css';
 
-const api = new Api(apiSettings);
+const api = new API(apiSettings);
 
 const userInfo = new UserInfo({
   nameSelector: '.profile__title',
@@ -37,9 +38,7 @@ profileEditPopup.setEventListeners();
 const popupAddCard = new PopupWithForm({
   popupSelector: '.popup_add-card',
   callback: data => {
-    const item = {name: data.placeInput, link: data.urlInput};
-
-    cardList.addItem(elements, createCard(item));
+    cardList.addItem(elements, createCard({name: data.placeInput, link: data.urlInput}));
   }
 });
 popupAddCard.setEventListeners();
