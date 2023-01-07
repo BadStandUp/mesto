@@ -7,7 +7,8 @@ import {
   profileCloseButton,
   profileEditButton,
   validationConfig,
-  elements
+  elements,
+  apiSettings
 } from "../utils/constants.js";
 import Card from "../components/Card.js";
 import Section from "../components/Section.js";
@@ -15,7 +16,10 @@ import UserInfo from "../components/UserInfo.js";
 import FormValidator from "../components/FormValidator.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
+import Api from "../components/Api.js";
 import './index.css';
+
+const api = new Api(apiSettings);
 
 const userInfo = new UserInfo({
   nameSelector: '.profile__title',

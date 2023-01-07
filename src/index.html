@@ -7,12 +7,12 @@
 </head>
 <body class="page">
   <header class="header">
-    <img alt="Лого" class="header__logo" src=<%=require("./images/logo.svg")%>>
+    <img alt="Лого" class="header__logo" src='<%=require("./images/logo.svg")%>'/>
   </header>
   <main class="content">
     <section class="profile">
       <div class="profile__info">
-        <img alt="Аватар" class="profile__avatar" src=<%=require("./images/avatar.jpg")%>>
+        <img alt="Аватар" class="profile__avatar" src='<%=require("./images/avatar.jpg")%>'/>
         <div class="profile__wrapper">
           <div class="profile__text-container">
             <h1 class="profile__title">Жак-Ив Кусто</h1>
@@ -30,6 +30,27 @@
   <footer class="footer">
     <p class="footer__copyright">&copy; 2022 Mesto Russia</p>
   </footer>
+
+  <div class="popup popup_avatar">
+    <div class="popup__container">
+      <h2 class="popup__title">Обновить аватар</h2>
+      <form action="#" class="popup__form popup__form_avatar" name="popupForm" novalidate>
+        <input type="url" class="popup__input popup__input_avatar_url" id="avatar" name="avatarInput" placeholder="Ссылка на картинку" required>
+        <span class="popup__input-error" id="avatar-error"></span>
+        <button class="popup__save-button" type="submit" disabled>Создать</button>
+      </form>
+      <button class="popup__close-button popup__close-button_avatar" type="button" aria-label="Выйти"></button>
+    </div>
+  </div>
+
+  <div class="popup popup_confirm">
+    <div class="popup__container">
+      <h2 class="popup__title">Вы уверены?</h2>
+      <button class="popup__close-button popup__close-button_confirm" type="button" aria-label="Выйти"></button>
+      <button class="popup__save-button" type="submit">Да</button>
+    </div>
+  </div>
+
   <div class="popup popup_zoom-image">
     <div class="popup__figure-container">
       <figure class="popup__figure">
@@ -39,6 +60,7 @@
       <button class="popup__close-button popup__close-button_zoom-image" type="button" aria-label="Выйти"></button>
     </div>
   </div>
+
   <div class="popup popup_add-card">
     <div class="popup__container">
       <h2 class="popup__title">Новое место</h2>
@@ -52,6 +74,7 @@
       <button class="popup__close-button popup__close-button_add-card" type="button" aria-label="Выйти"></button>
     </div>
   </div>
+
   <div class="popup popup_profile-edit">
     <div class="popup__container">
       <h2 class="popup__title">Редактировать профиль</h2>
@@ -65,15 +88,20 @@
       <button class="popup__close-button popup__close-button_profile-edit" type="button" aria-label="Выйти"></button>
     </div>
   </div>
+
   <template id="card-template">
     <article class="element">
       <img src="#" alt="#" class="element__image">
       <button class="element__delete-button" type="button" aria-label="Удалить"></button>
       <div class="element__caption">
         <h2 class="element__title"></h2>
-        <button class="element__like-button" type="button" aria-label="Лайк"></button>
+        <div class="element__like">
+          <button class="element__like-button" type="button" aria-label="Лайк"></button>
+          <span class="element__like-counter">0</span>
+        </div>
       </div>
     </article>
   </template>
+
 </body>
 </html>
