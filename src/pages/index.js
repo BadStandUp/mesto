@@ -37,14 +37,14 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
 const userInfo = new UserInfo({
   nameSelector: '.profile__title',
   aboutSelector: '.profile__subtitle',
-  avatarSelector: 'profile__avatar'
+  avatarSelector: '.profile__avatar'
 });
 
 const profileEditPopup = new PopupWithForm({
   popupSelector: '.popup_profile-edit',
   submitCallback: data => {
-    api.editProfile({name: data.name, about: data.about})
-      .then(() => userInfo.setUserInfo({name: data.name, about: data.about}))
+    api.editProfile({name: data.nameInput, about: data.aboutInput})
+      .then(() => userInfo.setUserInfo({name: data.nameInput, about: data.aboutInput}))
       .catch((err) => console.log(err))
   }
 });
@@ -67,11 +67,11 @@ const imagePopup = new PopupWithImage('.popup_zoom-image');
 imagePopup.setEventListeners();
 
 const avatarPopup = new PopupWithForm({
-  popupSelector: 'popup_avatar',
+  popupSelector: '.popup_avatar',
   submitCallback: data => {
-    api.editAvatar({avatar: data.link})
+    api.editAvatar({avatar: data.avatarInput})
       .then(() => {
-        userInfo.setUserAvatar({avatar: data.link});
+        userInfo.setUserAvatar({avatar: data.avatarInput});
       })
       .catch((err) => {
         console.log(err);
@@ -81,7 +81,7 @@ const avatarPopup = new PopupWithForm({
 avatarPopup.setEventListeners();
 
 const popupWithConfirmation = new PopupWithConfirmation({
-  popupSelector: 'popup_confirm',
+  popupSelector: '.popup_confirm',
   handleConfirmClick: (id, card) => {
     api.deleteCard(id)
       .then(() => card.remove())
@@ -101,11 +101,10 @@ const initialCardList = new Section(
   {
     renderer: (item, id) => {
       item.userId = id;
-      initialCardList.addItem(createCard(item));
+      initialCardList.addItem(createCard(item), false);
     }
   },
-  '#card-template');
-// initialCardList.renderItems();
+  '.elements');
 
 function createCard(item) {
   const newCard = new Card(item, '#card-template', handleCardClick, handleDeleteButtonClick, handleLikeClick);

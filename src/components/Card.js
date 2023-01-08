@@ -57,10 +57,10 @@ export default class Card {
 
   _setEventListeners() {
     if (this._idCardOwner === this._userId) {
-      this._deleteButton.addEventListener("click", () => this._handleDeleteButtonClick(this._idCard, this._element));
+      this._deleteButton.addEventListener("click", () => this._handleDeleteButtonClick({id: this._idCard, card: this._element}));
     }
     this._likeButton.addEventListener('click', () => this._handleLikeClick(this));
-    this._image.addEventListener('click', () => this._handleCardClick(this._url, this._name));
+    this._image.addEventListener('click', () => this._handleCardClick({name: this._name, link: this._url}));
   }
 
   handleLike(res) {

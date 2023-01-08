@@ -34,9 +34,9 @@ export default class Popup {
 
   _loading(isLoading) {
     if (isLoading) {
-      this._sumbitButton.textContent = 'Сохранение...';
+      this._submitButton.textContent = 'Сохранение...';
     } else {
-      this._sumbitButton.textContent = this._buttonText;
+      this._submitButton.textContent = this._buttonText;
     }
   }
 }

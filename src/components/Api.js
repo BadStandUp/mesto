@@ -35,8 +35,8 @@ export default class Api {
 
   addCard(data) {
     return this._promise('/cards', 'POST', JSON.stringify({
-      name: data.name,
-      link: data.link
+      name: data.placeInput,
+      link: data.urlInput
     }));
   }
 
