@@ -4,9 +4,10 @@ export default class PopupWithConfirmation extends Popup {
     super(popupSelector);
     this._handleConfirmClick = handleConfirmClick;
     this._submitButton = this._popupData.querySelector(".popup__save-button");
+    this._buttonText = this._sumbitButton.textContent;
   }
 
-  open(id,card) {
+  open({id, card}) {
     super.open();
     this._id = id;
     this._card = card;
@@ -15,7 +16,10 @@ export default class PopupWithConfirmation extends Popup {
   setEventListeners() {
     super.setEventListeners();
     this._submitButton.addEventListener('click', () => {
-      this._handleConfirmClick(this._card, this._id);
+      super._loading(true);
+      this._handleConfirmClick(this._id, this._card)
+        .then(() => this.close())
+        .finally(() => super._loading(false))
     })
   }
 }

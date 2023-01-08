@@ -1,6 +1,7 @@
 export default class Popup {
   constructor(selector) {
     this._popupData = document.querySelector(selector);
+
   }
 
   open() {
@@ -28,6 +29,14 @@ export default class Popup {
 
     if (classList.contains('popup') || classList.contains('popup__close-button')) {
       this.close();
+    }
+  }
+
+  _loading(isLoading) {
+    if (isLoading) {
+      this._sumbitButton.textContent = 'Сохранение...';
+    } else {
+      this._sumbitButton.textContent = this._buttonText;
     }
   }
 }

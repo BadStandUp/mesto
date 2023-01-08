@@ -1,4 +1,4 @@
-export default class API {
+export default class Api {
   constructor(options) {
     this._url = options.baseUrl;
     this._headers = options.headers;
@@ -28,15 +28,15 @@ export default class API {
 
   editProfile(data) {
     return this._promise('/users/me', 'PATCH', JSON.stringify({
-      name: `${data.name}`,
-      about: `${data.about}`
+      name: data.name,
+      about: data.about
     }));
   }
 
   addCard(data) {
     return this._promise('/cards', 'POST', JSON.stringify({
-      name: `${data.name}`,
-      link: `${data.link}`
+      name: data.name,
+      link: data.link
     }));
   }
 
@@ -46,7 +46,7 @@ export default class API {
 
   editAvatar(data) {
   return this._promise('/users/me/avatar', 'PATCH', JSON.stringify({
-    avatar: `${data.avatar}`
+    avatar: data.avatar
   }))
   }
 
@@ -57,6 +57,5 @@ export default class API {
   deleteLike() {
     return this._promise('/cards/' + id + '/likes', 'DELETE');
   }
-
 }
 
