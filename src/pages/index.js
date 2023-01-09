@@ -45,7 +45,9 @@ const profileEditPopup = new PopupWithForm({
   submitCallback: data => {
     api.editProfile({name: data.nameInput, about: data.aboutInput})
       .then(() => userInfo.setUserInfo({name: data.nameInput, about: data.aboutInput}))
+      .then(() => profileEditPopup.close())
       .catch((err) => console.log(err))
+      .finally(() => profileEditPopup.loading(true))
   }
 });
 profileEditPopup.setEventListeners();
@@ -58,7 +60,9 @@ const popupAddCard = new PopupWithForm({
         data.userId = data.owner._id;
         initialCardList.addItem(createCard(data), true);
       })
+      .then(() => popupAddCard.close())
       .catch((err) => console.log(err))
+      .finally(() => popupAddCard.loading(true))
   }
 });
 popupAddCard.setEventListeners();
@@ -73,9 +77,11 @@ const avatarPopup = new PopupWithForm({
       .then(() => {
         userInfo.setUserAvatar({avatar: data.avatarInput});
       })
+      .then(() => avatarPopup.close())
       .catch((err) => {
         console.log(err);
       })
+      .finally(() => avatarPopup.loading(true))
   }
 })
 avatarPopup.setEventListeners();
@@ -85,7 +91,9 @@ const popupWithConfirmation = new PopupWithConfirmation({
   handleConfirmClick: (id, card) => {
     api.deleteCard(id)
       .then(() => card.remove())
+      .then(() => popupWithConfirmation.close())
       .catch((err) => console.log(err))
+      .finally(() => popupWithConfirmation.loading(true))
   }
 })
 popupWithConfirmation.setEventListeners();
