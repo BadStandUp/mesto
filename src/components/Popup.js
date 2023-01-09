@@ -1,17 +1,17 @@
 export default class Popup {
   constructor(selector) {
     this._popupData = document.querySelector(selector);
-
+    this._handleEscClose = this._handleEscClose.bind(this);
   }
 
   open() {
     this._popupData.classList.add('popup_opened');
-    document.addEventListener('keydown', evt => this._handleEscClose(evt));
+    document.addEventListener('keydown', this._handleEscClose);
   }
 
   close() {
     this._popupData.classList.remove('popup_opened');
-    document.removeEventListener('keydown', evt => this._handleEscClose(evt));
+    document.removeEventListener('keydown', this._handleEscClose);
   }
 
   setEventListeners() {
@@ -19,7 +19,7 @@ export default class Popup {
   }
 
   _handleEscClose(evt) {
-    if (evt.key === 'Escape') {
+    if (evt.keyCode === 27) {
       this.close();
     }
   }
@@ -32,11 +32,5 @@ export default class Popup {
     }
   }
 
-  _loading(isLoading) {
-    if (isLoading) {
-      this._submitButton.textContent = 'Сохранение...';
-    } else {
-      this._submitButton.textContent = this._buttonText;
-    }
-  }
+
 }

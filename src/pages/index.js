@@ -7,12 +7,12 @@ import {
   profileCloseButton,
   profileEditButton,
   validationConfig,
-  elements,
   apiSettings,
   avatarEditButton,
   avatarCloseButton,
   avatarFormElement,
   confirmCloseButton,
+  popupConfig
 } from "../utils/constants.js";
 import Card from "../components/Card.js";
 import Section from "../components/Section.js";
@@ -41,7 +41,7 @@ const userInfo = new UserInfo({
 });
 
 const profileEditPopup = new PopupWithForm({
-  popupSelector: '.popup_profile-edit',
+  popupSelector: popupConfig.editProfilePopup,
   submitCallback: data => {
     api.editProfile({name: data.nameInput, about: data.aboutInput})
       .then(() => userInfo.setUserInfo({name: data.nameInput, about: data.aboutInput}))
@@ -51,7 +51,7 @@ const profileEditPopup = new PopupWithForm({
 profileEditPopup.setEventListeners();
 
 const popupAddCard = new PopupWithForm({
-  popupSelector: '.popup_add-card',
+  popupSelector: popupConfig.addCardPopup,
   submitCallback: data => {
     api.addCard(data)
       .then((data) => {
@@ -63,11 +63,11 @@ const popupAddCard = new PopupWithForm({
 });
 popupAddCard.setEventListeners();
 
-const imagePopup = new PopupWithImage('.popup_zoom-image');
+const imagePopup = new PopupWithImage(popupConfig.imagePopup);
 imagePopup.setEventListeners();
 
 const avatarPopup = new PopupWithForm({
-  popupSelector: '.popup_avatar',
+  popupSelector: popupConfig.avatarPopup,
   submitCallback: data => {
     api.editAvatar({avatar: data.avatarInput})
       .then(() => {
@@ -81,7 +81,7 @@ const avatarPopup = new PopupWithForm({
 avatarPopup.setEventListeners();
 
 const popupWithConfirmation = new PopupWithConfirmation({
-  popupSelector: '.popup_confirm',
+  popupSelector: popupConfig.confirmationPopup,
   handleConfirmClick: (id, card) => {
     api.deleteCard(id)
       .then(() => card.remove())
@@ -111,7 +111,6 @@ function createCard(item) {
 
   return newCard.generateCard();
 }
-
 
 function handleCardClick(item) {
   imagePopup.open(item);
@@ -147,7 +146,6 @@ avatarEditButton.addEventListener('click', () => {
 })
 
 profileEditButton.addEventListener('click', () => {
-
   const profileInfo = userInfo.getUserInfo();
 
   nameInput.value = profileInfo.name;

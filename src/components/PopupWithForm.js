@@ -14,7 +14,7 @@ export default class PopupWithForm extends Popup {
     super.setEventListeners();
     this._form.addEventListener('submit', (evt) => {
       evt.preventDefault();
-      super._loading(true);
+      this._loading(true);
       Promise.resolve(this._submitCallback(this._getInputValues()))
         .then(() => this.close())
         .finally(() => {
@@ -38,10 +38,12 @@ export default class PopupWithForm extends Popup {
     return this._inputValues;
   }
 
-  setInputValues(data) {
-    this._formInputs.forEach((input) => {
-      input.value = data[input.name];
-    });
+  _loading(isLoading) {
+    if (isLoading) {
+      this._submitButton.textContent = 'Сохранение...';
+    } else {
+      this._submitButton.textContent = this._buttonText;
+    }
   }
 }
 

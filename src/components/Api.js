@@ -4,11 +4,11 @@ export default class Api {
     this._headers = options.headers;
   }
 
-  _promise(url, method, body) {
+  _fetch(url, method, body) {
     return fetch(`${this._url}${url}`, {
-      method: `${method}`,
+      method: method,
       headers: this._headers,
-      body: body
+      body
     })
       .then(res => {
         if (res.ok) {
@@ -19,43 +19,43 @@ export default class Api {
   }
 
   getInitialCards() {
-    return this._promise('/cards', 'GET');
+    return this._fetch('/cards', 'GET');
   }
 
   getUserInfo() {
-    return this._promise('/users/me', 'GET');
+    return this._fetch('/users/me', 'GET');
   }
 
   editProfile(data) {
-    return this._promise('/users/me', 'PATCH', JSON.stringify({
+    return this._fetch('/users/me', 'PATCH', JSON.stringify({
       name: data.name,
       about: data.about
     }));
   }
 
   addCard(data) {
-    return this._promise('/cards', 'POST', JSON.stringify({
+    return this._fetch('/cards', 'POST', JSON.stringify({
       name: data.placeInput,
       link: data.urlInput
     }));
   }
 
   deleteCard(id) {
-    return this._promise('/cards/' + id, 'DELETE');
+    return this._fetch('/cards/' + id, 'DELETE');
   }
 
   editAvatar(data) {
-  return this._promise('/users/me/avatar', 'PATCH', JSON.stringify({
+  return this._fetch('/users/me/avatar', 'PATCH', JSON.stringify({
     avatar: data.avatar
   }))
   }
 
   setLike(id) {
-    return this._promise('/cards/' + id + '/likes', 'PUT');
+    return this._fetch('/cards/' + id + '/likes', 'PUT');
   }
 
   deleteLike() {
-    return this._promise('/cards/' + id + '/likes', 'DELETE');
+    return this._fetch('/cards/' + id + '/likes', 'DELETE');
   }
 }
 

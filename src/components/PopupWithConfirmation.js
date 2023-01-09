@@ -15,11 +15,21 @@ export default class PopupWithConfirmation extends Popup {
 
   setEventListeners() {
     super.setEventListeners();
+    // кнопка не в форме, поэтому 'sumbit' не сработает
     this._submitButton.addEventListener('click', () => {
-      super._loading(true);
+      this._loading(true);
       Promise.resolve(this._handleConfirmClick(this._id, this._card))
         .then(() => this.close())
-        .finally(() => super._loading(false))
+        .finally(() => this._loading(false))
     })
   }
+
+  _loading(isLoading) {
+    if (isLoading) {
+      this._submitButton.textContent = 'Сохранение...';
+    } else {
+      this._submitButton.textContent = this._buttonText;
+    }
+  }
+
 }
