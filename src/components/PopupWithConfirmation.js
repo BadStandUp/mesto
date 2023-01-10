@@ -3,7 +3,7 @@ export default class PopupWithConfirmation extends Popup {
   constructor({popupSelector, handleConfirmClick}) {
     super(popupSelector);
     this._handleConfirmClick = handleConfirmClick;
-    this._submitButton = this._popupData.querySelector(".popup__save-button");
+    this._confirmButton = this._popupData.querySelector(".popup__save-button");
   }
 
   open({id, card}) {
@@ -14,17 +14,16 @@ export default class PopupWithConfirmation extends Popup {
 
   setEventListeners() {
     super.setEventListeners();
-    // кнопка не в форме, поэтому 'sumbit' не сработает
-    this._submitButton.addEventListener('click', () => {
+    this._confirmButton.addEventListener('click', () => {
       this._handleConfirmClick(this._id, this._card)
     })
   }
 
   loading(isLoading) {
     if (isLoading) {
-      this._submitButton.textContent = 'Сохранение...';
+      this._confirmButton.textContent = 'Сохранение...';
     } else {
-      this._submitButton.textContent = this._buttonText;
+      this._confirmButton.textContent = this._buttonText;
     }
   }
 }

@@ -6,7 +6,7 @@ export default class Api {
 
   _fetch(url, method, body) {
     return fetch(`${this._url}${url}`, {
-      method: method,
+      method,
       headers: this._headers,
       body
     })
@@ -54,7 +54,7 @@ export default class Api {
     return this._fetch('/cards/' + id + '/likes', 'PUT');
   }
 
-  deleteLike() {
+  deleteLike(id) {
     return this._fetch('/cards/' + id + '/likes', 'DELETE');
   }
 }

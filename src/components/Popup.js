@@ -2,6 +2,7 @@ export default class Popup {
   constructor(selector) {
     this._popupData = document.querySelector(selector);
     this._handleEscClose = this._handleEscClose.bind(this);
+    this._ESCAPE_KEY = 27;
   }
 
   open() {
@@ -19,7 +20,7 @@ export default class Popup {
   }
 
   _handleEscClose(evt) {
-    if (evt.keyCode === 27) {
+    if (evt.keyCode === this._ESCAPE_KEY) {
       this.close();
     }
   }

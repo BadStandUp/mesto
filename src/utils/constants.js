@@ -15,6 +15,10 @@ export const popupConfig = {
   imagePopup: '.popup_zoom-image'
 }
 
+export const defaultContainer = '.elements';
+export const defaultTemplate = '#card-template';
+
+
 export const profileEditButton = document.querySelector('.profile__edit-button');
 export const profileCloseButton = document.querySelector('.popup__close-button_profile-edit');
 
